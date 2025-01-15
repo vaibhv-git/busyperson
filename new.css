@@ -1,51 +1,145 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
-  background: #121212; /* Dark gray background */
+  background: #121212; /* Dark gray */
   margin: 0;
   padding: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .animation-box {
-  width: 90%; /* Use most of the screen width */
-  max-width: 390px; /* Match iPhone 14 width */
-  margin: 0 auto;
-  padding: 1rem;
-  background: #1a1a1a;
-  border-radius: 8px;
+  width: 90%; /* Scales well on iPhone 14 */
+  max-width: 390px; /* Ensure it fits within iPhone 14's width */
+  height: auto;
+  position: relative;
+  overflow: hidden;
 }
 
-.first-text, .second-text, .third-text, .fourth-text, .fifth-text {
-  font-size: 1.4rem;
-  margin: 1rem 0;
+.text {
+  position: absolute;
+  width: 100%;
   text-align: center;
-  word-wrap: break-word;
-  line-height: 1.5;
-  color: white;
+  opacity: 0;
+  animation-duration: 8s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 
-/* iPhone 14 (width 390px) Specific Adjustments */
+/* Specific Text Animations */
+.first-text {
+  animation-name: fadeSlideDown;
+}
+
+.second-text {
+  animation-name: fadeSlideRight;
+  animation-delay: 3s;
+}
+
+.third-text {
+  animation-name: fadeRotateIn;
+  animation-delay: 6s;
+}
+
+.fourth-text {
+  animation-name: fadeSlideLeft;
+  animation-delay: 9s;
+}
+
+.fifth-text {
+  animation-name: fadeSlideUp;
+  animation-delay: 12s;
+}
+
+/* Keyframes */
+@keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+}
+
+@keyframes fadeSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+}
+
+@keyframes fadeRotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.8);
+  }
+}
+
+@keyframes fadeSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+}
+
+/* Responsive Adjustments for iPhone 14 */
 @media (max-width: 390px) {
   .animation-box {
-    width: 100%; /* Full width for smaller screens */
-    padding: 0.8rem; /* Reduce padding */
+    width: 100%;
   }
 
-  .first-text, .second-text, .third-text, .fourth-text, .fifth-text {
-    font-size: 1.2rem; /* Adjust font size for smaller screen */
-  }
-}
-
-/* General Mobile Styles (Small Devices) */
-@media (max-width: 768px) {
-  .first-text, .second-text, .third-text, .fourth-text, .fifth-text {
-    font-size: 1.3rem;
-    text-align: center;
-    padding: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .first-text, .second-text, .third-text, .fourth-text, .fifth-text {
-    font-size: 1rem; /* Further reduce font size */
+  .text {
+    font-size: 1.2rem; /* Adjust text size for better readability */
+    line-height: 1.5;
+    padding: 0 1rem; /* Add some padding for smaller screens */
   }
 }
